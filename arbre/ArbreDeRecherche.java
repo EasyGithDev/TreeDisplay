@@ -29,9 +29,13 @@ public class ArbreDeRecherche<T extends Comparable<T>> extends ArbreBinaire<T> {
             return new Noeud<T>(valeur);
         }
 
-        if (a.compare(a, valeur) < 0) {
+        // if s1 > s2, it returns positive number
+        // if s1 < s2, it returns negative number
+        // if s1 == s2, it returns 0
+
+        if (a.compare(a, valeur) > 0) {
             a.filsGauche(inserer(a.filsGauche(), valeur));
-        } else if (a.compare(a, valeur) > 0) {
+        } else if (a.compare(a, valeur) < 0) {
             a.filsDroit(inserer(a.filsDroit(), valeur));
         }
 
