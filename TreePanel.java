@@ -62,28 +62,41 @@ public class TreePanel<T extends Comparable<T>> extends JPanel {
         }
     }
 
+    /**
+     * Conversion d'une coordonnée en pixel
+     * 
+     * @param val
+     * @return
+     */
+    private int convX(int val) {
+        return (int) (dx * val + mx);
+    }
+
+    private int convY(int val) {
+        return (int) (dy * val + my);
+    }
+
     /*
      * Dessin effectif
+     * Si fG existe, tracer la ligne entre le noeud et son fG, descendre dans le fG
+     * Si fD existe, tracer la ligne entre le noeud et son fD, descendre dans le fD
+     * Enfin, dessiner la valeur du noeud
      */
     private void dessiner(Noeud<T> a, Graphics g) {
         final int LARG = 10;
         final int HAUT = 10;
 
-        int x1 = (int) (dx * a.X() + mx);
-        int y1 = (int) (dy * a.Y() + my);
+        int x1 = convX(a.X());
+        int y1 = convY(a.Y());
 
         if (a.existeFilsGauche()) {
             Noeud<T> f = a.filsGauche();
-            int x2 = (int) (dx * f.X() + mx);
-            int y2 = (int) (dy * f.Y() + my);
-            g.drawLine(x1, y1, x2, y2);
+            g.drawLine(x1, y1, convX(f.X()), convY(f.Y()));
             dessiner(f, g);
         }
         if (a.existeFilsDroit()) {
             Noeud<T> f = a.filsDroit();
-            int x2 = (int) (dx * f.X() + mx);
-            int y2 = (int) (dy * f.Y() + my);
-            g.drawLine(x1, y1, x2, y2);
+            g.drawLine(x1, y1, convX(f.X()), convY(f.Y()));
             dessiner(f, g);
         }
 
