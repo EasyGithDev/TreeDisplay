@@ -27,30 +27,33 @@ public class ArbreBinaire<T extends Comparable<T>> {
         this.racine = racine;
     }
 
-    public void infix(Noeud<T> courant) {
+    public void infix(Noeud<T> courant, Queue<Object> queue) {
         if (courant == null)
             return;
 
-        infix(courant.filsGauche());
+        infix(courant.filsGauche(), queue);
         System.out.print(courant.valeur() + " ");
-        infix(courant.filsDroit());
+        queue.add(courant.valeur());
+        infix(courant.filsDroit(), queue);
     }
 
-    public void prefix(Noeud<T> courant) {
+    public void prefix(Noeud<T> courant, Queue<Object> queue) {
         if (courant == null)
             return;
-
+        queue.add(courant.valeur());
         System.out.print(courant.valeur() + " ");
-        prefix(courant.filsGauche());
-        prefix(courant.filsDroit());
+        prefix(courant.filsGauche(), queue);
+        prefix(courant.filsDroit(), queue);
     }
 
-    public void postfix(Noeud<T> courant) {
+    public void postfix(Noeud<T> courant, Queue<Object> queue) {
         if (courant == null)
             return;
 
-        postfix(courant.filsGauche());
-        postfix(courant.filsDroit());
+        postfix(courant.filsGauche(), queue);
+        postfix(courant.filsDroit(), queue);
+        queue.add(courant.valeur());
+
         System.out.print(courant.valeur() + " ");
     }
 
@@ -81,7 +84,7 @@ public class ArbreBinaire<T extends Comparable<T>> {
         return this.racine.taille();
     }
 
-      /*
+    /*
      * Calcul de la position d'un noeud dans le plan
      */
     public int calculerPositions(Noeud<T> p, int xCourant, int yCourant) {
@@ -101,6 +104,5 @@ public class ArbreBinaire<T extends Comparable<T>> {
         /* la valeur de xCourant comprend maintenant la largeur de notre arbre */
         return xCourant;
     }
-
 
 }

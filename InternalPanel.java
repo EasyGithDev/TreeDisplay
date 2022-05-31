@@ -190,18 +190,18 @@ public class InternalPanel extends JPanel
     }
 
     private void showInfos() {
-/*
+
         Queue<Object> queue = new LinkedList<Object>();
         ArbreBinaire<String> arbre = treePanel.ArbreBinaire();
 
         arbre.prefix(arbre.racine(), queue);
-        String prefix = treeToStrint(queue);
+        String prefix = treeToString(queue);
 
         arbre.infix(arbre.racine(), queue);
-        String infix = treeToStrint(queue);
+        String infix = treeToString(queue);
 
         arbre.postfix(arbre.racine(), queue);
-        String postfix = treeToStrint(queue);
+        String postfix = treeToString(queue);
 
         textArea.append(newline);
         textArea.append("Hauteur : " + arbre.hauteur() + newline + newline);
@@ -209,10 +209,10 @@ public class InternalPanel extends JPanel
         textArea.append("Prefixe : " + prefix + newline + newline);
         textArea.append("Infix : " + infix + newline + newline);
         textArea.append("Postfix : " + postfix + newline + newline);
-*/
+
     }
 
-    private String treeToStrint(Queue<Object> queue) {
+    private String treeToString(Queue<Object> queue) {
         StringBuilder sb = new StringBuilder();
         while (!queue.isEmpty()) {
             sb.append(queue.remove());
