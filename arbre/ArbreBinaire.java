@@ -81,4 +81,26 @@ public class ArbreBinaire<T extends Comparable<T>> {
         return this.racine.taille();
     }
 
+      /*
+     * Calcul de la position d'un noeud dans le plan
+     */
+    public int calculerPositions(Noeud<T> p, int xCourant, int yCourant) {
+        /* on augmente xCourant afin d'accueillir toute la largeur du fils gauche */
+        if (p.existeFilsGauche()) {
+            xCourant = calculerPositions(p.filsGauche(), xCourant, yCourant + 1);
+        }
+
+        /* la valeur de xCourant est maintenant l'abscisse de notre noeud */
+        p.fixerPosition(xCourant, yCourant);
+        xCourant = xCourant + 1;
+
+        /* on deplace xCourant afin d'accueillir toute la largeur du fils droit */
+        if (p.existeFilsDroit())
+            xCourant = calculerPositions(p.filsDroit(), xCourant, yCourant + 1);
+
+        /* la valeur de xCourant comprend maintenant la largeur de notre arbre */
+        return xCourant;
+    }
+
+
 }

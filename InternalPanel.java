@@ -54,7 +54,7 @@ import javax.swing.plaf.FontUIResource;
 import arbre.ArbreAvl;
 import arbre.ArbreBinaire;
 import arbre.ArbreFactory;
-import arbre.ArbrePosition;
+import arbre.ArbreBinaire;
 import arbre.Noeud;
 
 import java.net.URL;
@@ -190,9 +190,9 @@ public class InternalPanel extends JPanel
     }
 
     private void showInfos() {
-
+/*
         Queue<Object> queue = new LinkedList<Object>();
-        ArbrePosition<String> arbre = treePanel.arbrePosition();
+        ArbreBinaire<String> arbre = treePanel.ArbreBinaire();
 
         arbre.prefix(arbre.racine(), queue);
         String prefix = treeToStrint(queue);
@@ -209,6 +209,7 @@ public class InternalPanel extends JPanel
         textArea.append("Prefixe : " + prefix + newline + newline);
         textArea.append("Infix : " + infix + newline + newline);
         textArea.append("Postfix : " + postfix + newline + newline);
+*/
     }
 
     private String treeToStrint(Queue<Object> queue) {
@@ -279,27 +280,27 @@ public class InternalPanel extends JPanel
         ArbreAvl<Integer> avl = ArbreFactory.avlFromArray(tab3);
 
         // frame.add(new InternalPanel(new TreePanel(new
-        // ArbrePosition<String>(ab.racine()))));
+        // ArbreBinaire<String>(ab.racine()))));
         frame.add(
                 new InternalPanel(
                         new TreePanel(
-                                new ArbrePosition<Integer>(avl.racine()))));
+                                new ArbreBinaire<Integer>(avl.racine()))));
 
         // Display the window.
         frame.pack();
         frame.setVisible(true);
     }
 
-    public static void main(String[] args) {
+    // public static void main(String[] args) {
 
-        // Schedule a job for the event dispatch thread:
-        // creating and showing this application's GUI.
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                // Turn off metal's use of bold fonts
-                UIManager.put("swing.boldMetal", Boolean.FALSE);
-                createAndShowGUI();
-            }
-        });
-    }
+    //     // Schedule a job for the event dispatch thread:
+    //     // creating and showing this application's GUI.
+    //     SwingUtilities.invokeLater(new Runnable() {
+    //         public void run() {
+    //             // Turn off metal's use of bold fonts
+    //             UIManager.put("swing.boldMetal", Boolean.FALSE);
+    //             createAndShowGUI();
+    //         }
+    //     });
+    // }
 }

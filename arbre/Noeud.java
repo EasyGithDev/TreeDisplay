@@ -7,6 +7,11 @@ public class Noeud<T extends Comparable<T>> implements Comparator<Noeud<T>> {
     protected Noeud<T> g, d;
     protected T v;
 
+    /*
+     * Coordonnées du noeud
+     */
+    private int x, y;
+
     public Noeud(Noeud<T> g, T v, Noeud<T> d) {
         this.g = g;
         this.v = v;
@@ -63,6 +68,36 @@ public class Noeud<T extends Comparable<T>> implements Comparator<Noeud<T>> {
         int gauche = (existeFilsGauche()) ? this.filsGauche().taille() : 0;
         int droit = (existeFilsDroit()) ? this.filsDroit().taille() : 0;
         return gauche + droit + 1;
+    }
+
+    /*
+     * Accès à la position dans le plan
+     */
+    public int X() {
+        return x;
+    }
+
+    public int Y() {
+        return y;
+    }
+
+    public void fixerPosition(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    public Noeud<T> rotationG() {
+        Noeud<T> b = this.d;
+        this.d = b.g;
+        b.g = this;
+        return b;
+    }
+
+    public Noeud<T> rotationD() {
+        Noeud<T> b = this.g;
+        this.g = b.d;
+        b.d = this;
+        return b;
     }
 
     // Overriding the compareTo method

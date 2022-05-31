@@ -8,15 +8,15 @@ import java.awt.FontMetrics;
 
 import javax.swing.JPanel;
 
-import arbre.ArbrePosition;
-import arbre.NoeudPosition;
+import arbre.ArbreBinaire;
+import arbre.Noeud;
 
 public class TreePanel<T extends Comparable<T>> extends JPanel {
 
     /*
      * L'arbre en question
      */
-    private ArbrePosition<T> arbre;
+    private ArbreBinaire<T> arbre;
 
     /*
      * dimensions de l'arbre (exprimées en nombres de noeuds)
@@ -33,14 +33,14 @@ public class TreePanel<T extends Comparable<T>> extends JPanel {
      * On consruit un panneau à partir d'un arbre dont on mémorise
      * une fois pour toutes les dimensions.
      */
-    public TreePanel(ArbrePosition<T> arbre) {
+    public TreePanel(ArbreBinaire<T> arbre) {
         this.arbre = arbre;
         largeur = arbre.calculerPositions(arbre.racine(), 0, 0);
         hauteur = arbre.hauteur();
         setBackground(Color.WHITE);
     }
 
-    public ArbrePosition<T> arbrePosition() {
+    public ArbreBinaire<T> ArbreBinaire() {
         return arbre;
     }
 
@@ -65,7 +65,7 @@ public class TreePanel<T extends Comparable<T>> extends JPanel {
     /*
      * Dessin effectif
      */
-    private void dessiner(NoeudPosition<T> a, Graphics g) {
+    private void dessiner(Noeud<T> a, Graphics g) {
         final int LARG = 10;
         final int HAUT = 10;
 
@@ -73,14 +73,14 @@ public class TreePanel<T extends Comparable<T>> extends JPanel {
         int y1 = (int) (dy * a.Y() + my);
 
         if (a.existeFilsGauche()) {
-            NoeudPosition<T> f = a.filsGauche();
+            Noeud<T> f = a.filsGauche();
             int x2 = (int) (dx * f.X() + mx);
             int y2 = (int) (dy * f.Y() + my);
             g.drawLine(x1, y1, x2, y2);
             dessiner(f, g);
         }
         if (a.existeFilsDroit()) {
-            NoeudPosition<T> f = a.filsDroit();
+            Noeud<T> f = a.filsDroit();
             int x2 = (int) (dx * f.X() + mx);
             int y2 = (int) (dy * f.Y() + my);
             g.drawLine(x1, y1, x2, y2);
