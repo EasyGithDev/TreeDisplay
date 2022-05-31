@@ -44,7 +44,6 @@ import arbre.ArbreBinaire;
 import arbre.ArbreDeRecherche;
 import arbre.ArbreExpression;
 import arbre.ArbreFactory;
-import arbre.ArbreBinaire;
 
 import java.awt.event.*;
 import java.awt.*;
@@ -180,7 +179,7 @@ public class Main extends JFrame
 
         ArbreBinaire<String> ab = ArbreFactory.binaireFromArray(words);
         ArbreBinaire<String> ap = new ArbreBinaire<String>(ab.racine());
-        TreePanel treePanel = new TreePanel(ap);
+        TreePanel<String> treePanel = new TreePanel<String>(ap);
 
         MyInternalFrame frame = new MyInternalFrame(600, 400, "Arbre binaire");
         frame.setContentPane(new InternalPanel(treePanel));
@@ -199,7 +198,7 @@ public class Main extends JFrame
 
         ArbreExpression ae = ArbreExpression.creer(tree.trim().split(" "));
         ArbreBinaire<String> ap = new ArbreBinaire<String>(ae.racine());
-        TreePanel treePanel = new TreePanel(ap);
+        TreePanel<String> treePanel = new TreePanel<String>(ap);
 
         InternalPanel ip = new InternalPanel(treePanel);
         JButton compute = ip.makeNavigationButton("Play-icon", null,
@@ -237,7 +236,7 @@ public class Main extends JFrame
 
         ArbreDeRecherche<String> abr = ArbreFactory.abrFromArray(words);
         ArbreBinaire<String> ap = new ArbreBinaire<String>(abr.racine());
-        TreePanel treePanel = new TreePanel(ap);
+        TreePanel<String> treePanel = new TreePanel<String>(ap);
 
         MyInternalFrame frame = new MyInternalFrame(FRAME_WIDTH, FRAME_HEIGTH, "Arbre binaire de recherche");
         frame.setContentPane(new InternalPanel(treePanel));
@@ -260,7 +259,7 @@ public class Main extends JFrame
 
         ArbreAvl<String> avl = ArbreFactory.avlFromArray(words);
         ArbreBinaire<String> ap = new ArbreBinaire<String>(avl.racine());
-        TreePanel treePanel = new TreePanel(ap);
+        TreePanel<String> treePanel = new TreePanel<String>(ap);
 
         MyInternalFrame frame = new MyInternalFrame(600, 400, "Arbre Avl");
         frame.setContentPane(new InternalPanel(treePanel));
